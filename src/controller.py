@@ -42,46 +42,49 @@ class Controller:
 
     def tick(self):
         command = input(self._build_prompt())
+        action, *subjects = command.split(' ', 1)
 
-        move_to = None
+        if action == 'n':
+            room = self._player.look_north()
+            self._player.move(room)
+            return command
 
-        if command is 'n':
-            move_to = self._player.look_north()
+        if action == 's':
+            room = self._player.look_south()
+            self._player.move(room)
+            return command
 
-        if command is 's':
-            move_to = self._player.look_south()
+        if action == 'e':
+            room = self._player.look_east()
+            self._player.move(room)
+            return command
 
-        if command is 'e':
-            move_to = self._player.look_east()
+        if action == 'w':
+            room = self._player.look_west()
+            self._player.move(room)
+            return command
 
-        if command is 'w':
-            move_to = self._player.look_west()
-
-        if command.startswith('take'):
+        if action == 'take':
             try:
-                self._player.take(command.replace('take ', '', 1))
+                self._player.take(subjects[0])
                 return command
             except:
                 input("INVALID ITEM! Press ENTER key then enter a valid command...")
                 return command
 
-        if command.startswith('drop'):
+        if action == 'drop':
             try:
-                self._player.drop(command.replace('drop ', '', 1))
+                self._player.drop(subjects[0])
                 return command
             except:
                 input("INVALID ITEM! Press ENTER key then enter a valid command...")
                 return command
 
-        if command is 'i':
+        if action == 'i':
             self._player.inventory()
             return command
 
-        if command is 'q':
-            return command
-
-        if move_to is not None:
-            self._player.move(move_to)
+        if action == 'q':
             return command
 
         input("INVALID COMMAND! Press ENTER key then enter a valid command...")
