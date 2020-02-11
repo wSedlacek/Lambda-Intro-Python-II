@@ -54,7 +54,7 @@ class Controller:
             self._player.move(room)
             return command
 
-        if action == 'take':
+        if action == 'take' or action == 'get':
             try:
                 self._player.take(subjects[0])
                 return command
@@ -70,11 +70,11 @@ class Controller:
                 input("INVALID ITEM! Press ENTER key then enter a valid command...")
                 return command
 
-        if action == 'i':
+        if action == 'i' or action == 'inventory':
             self._player.inventory()
             return command
 
-        if action == 'q':
+        if action == 'q' or action == 'quit':
             return command
 
         input("INVALID COMMAND! Press ENTER key then enter a valid command...")
