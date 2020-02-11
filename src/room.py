@@ -1,40 +1,61 @@
 class Room:
-    name = None
-    description = None
+    _name = None
+    _description = None
 
-    north = None
-    south = None
-    east = None
-    west = None
+    _north = None
+    _south = None
+    _east = None
+    _west = None
 
-    items = None
+    _items = None
 
     def __init__(self, name, description, items):
-        self.name = name
-        self.description = description
-        self.items = items
+        self._name = name
+        self._description = description
+        self._items = items
 
     def __str__(self):
-        details = f'''==={self.name}===
-{self.description}\n'''
+        details = f'''==={self._name}===
+{self._description}\n'''
 
-        for item in self.items:
-            details += f'''\nItem: {item.name} - {item.description}'''
+        for item in self._items:
+            details += str(item)
 
         return details
 
     def north_of(self, room):
-        room.north = self
-        self.south = room
+        room._north = self
+        self._south = room
 
     def south_of(self, room):
-        room.south = self
-        self.north = room
+        room._south = self
+        self._north = room
 
     def east_of(self, room):
-        room.east = self
-        self.west = room
+        room._east = self
+        self._west = room
 
     def west_of(self, room):
-        room.west = self
-        self.east = room
+        room._west = self
+        self._east = room
+
+    def items(self):
+        return self._items
+
+    def take(self, item):
+        self._items.remove(item)
+
+    def drop(self, item):
+        self._items.append(item)
+
+    def north(self):
+        return self._north
+
+    def south(self):
+        return self._south
+
+    def east(self):
+        return self._east
+
+    def west(self):
+        return self._west

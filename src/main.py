@@ -53,5 +53,5 @@ controller = Controller(player)
 command = "start"
 while (command is not 'q'):
     clear()
-    print(player.current_room)
+    player.look()
     command = controller.tick()
