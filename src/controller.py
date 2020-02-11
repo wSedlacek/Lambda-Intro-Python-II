@@ -1,8 +1,9 @@
+from player import Player
 from utils import clear
 
 
 class Controller:
-    _player = None
+    _player: Player
 
     def __init__(self, player):
         self._player = player

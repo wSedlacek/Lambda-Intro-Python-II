@@ -1,6 +1,6 @@
 class Item:
-    _name = None
-    _description = None
+    _name: str
+    _description: str
 
     def __init__(self, name, description):
         self._name = name

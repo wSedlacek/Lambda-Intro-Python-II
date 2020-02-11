@@ -1,13 +1,18 @@
+from __future__ import annotations
+from typing import List
+from item import Item
+
+
 class Room:
-    _name = None
-    _description = None
+    _name: str
+    _description: str
 
-    _north = None
-    _south = None
-    _east = None
-    _west = None
+    _north: Room = None
+    _south: Room = None
+    _east: Room = None
+    _west: Room = None
 
-    _items = None
+    _items: List[Item] = []
 
     def __init__(self, name, description, items):
         self._name = name

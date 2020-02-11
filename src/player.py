@@ -1,7 +1,12 @@
+from typing import List
+from room import Room
+from item import Item
+
+
 class Player:
-    _name = None
-    _current_room = None
-    _items = []
+    _name: str
+    _current_room: Room
+    _items: List[Item] = []
 
     def __init__(self, name, room):
         self._name = name
