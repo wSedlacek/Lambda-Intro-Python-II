@@ -7,13 +7,21 @@ class Room:
     east = None
     west = None
 
-    def __init__(self, name, description):
+    items = None
+
+    def __init__(self, name, description, items):
         self.name = name
         self.description = description
+        self.items = items
 
     def __str__(self):
-        return f'''==={self.name}===
-{self.description}'''
+        details = f'''==={self.name}===
+{self.description}\n'''
+
+        for item in self.items:
+            details += f'''\nItem: {item.name} - {item.description}'''
+
+        return details
 
     def north_of(self, room):
         room.north = self
