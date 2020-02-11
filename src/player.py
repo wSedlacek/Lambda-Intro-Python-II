@@ -18,6 +18,8 @@ class Player:
         print(self._current_room)
 
     def move(self, room):
+        if room is None:
+            raise TypeError
         self._current_room = room
 
     def inventory(self):

@@ -37,51 +37,46 @@ class Controller:
         command = input(self._build_prompt())
         action, *subjects = command.split(' ', 1)
 
-        if action == 'n':
-            room = self._player.look_north()
-            self._player.move(room)
-            return command
+        try:
+            if action == 'n':
+                room = self._player.look_north()
+                self._player.move(room)
+                return command
 
-        if action == 's':
-            room = self._player.look_south()
-            self._player.move(room)
-            return command
+            if action == 's':
+                room = self._player.look_south()
+                self._player.move(room)
+                return command
 
-        if action == 'e':
-            room = self._player.look_east()
-            self._player.move(room)
-            return command
+            if action == 'e':
+                room = self._player.look_east()
+                self._player.move(room)
+                return command
 
-        if action == 'w':
-            room = self._player.look_west()
-            self._player.move(room)
-            return command
+            if action == 'w':
+                room = self._player.look_west()
+                self._player.move(room)
+                return command
 
-        if action == 'take' or action == 'get':
-            try:
+            if action == 'take' or action == 'get':
                 self._player.take(subjects[0])
                 return command
-            except:
-                input("INVALID ITEM! Press ENTER key then enter a valid command...")
-                return command
 
-        if action == 'drop':
-            try:
+            if action == 'drop':
                 self._player.drop(subjects[0])
                 return command
-            except:
-                input("INVALID ITEM! Press ENTER key then enter a valid command...")
+
+            if action == 'i' or action == 'inventory':
+                clear()
+                self._player.inventory()
                 return command
 
-        if action == 'i' or action == 'inventory':
-            clear()
-            self._player.inventory()
-            return command
+            if action == 'q' or action == 'quit':
+                return command
 
-        if action == 'q' or action == 'quit':
-            return command
-
-        input("INVALID COMMAND! Press ENTER key then enter a valid command...")
+            raise NotImplementedError
+        except:
+            input("INVALID COMMAND! Press ENTER key then enter a valid command...")
 
     def start(self):
         command = "start"
