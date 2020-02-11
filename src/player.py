@@ -1,6 +1,3 @@
-from utils import clear
-
-
 class Player:
     _name = None
     _current_room = None
@@ -24,7 +21,6 @@ class Player:
         self._current_room = room
 
     def inventory(self):
-        clear()
         print(self)
         input('Press ENTER key to continue...')
 

@@ -2,13 +2,13 @@ from room import Room
 from item import Item
 from player import Player
 from controller import Controller
-from utils import clear
+
 
 items = {
     'sword': Item("Sword", "A sharp toy to cut things.")
 }
 
-room = {
+rooms = {
     'outside':  Room('Outside Cave Entrance',
                      'North of you, the cave mount beckons',
                      [items['sword']]),
@@ -36,22 +36,12 @@ earlier adventurers. The only exit is to the south.''',
                      []),
 }
 
-room['outside'].south_of(room['foyer'])
-room['foyer'].south_of(room['overlook'])
-room['foyer'].west_of(room['narrow'])
-room['narrow'].south_of(room['treasure'])
+rooms['outside'].south_of(rooms['foyer'])
+rooms['foyer'].south_of(rooms['overlook'])
+rooms['foyer'].west_of(rooms['narrow'])
+rooms['narrow'].south_of(rooms['treasure'])
 
-clear()
-player_name = input("What is your name adventurer? ")
-player = Player(player_name, room['outside'])
+player_name = input("What is your name adventurer?\n")
+player = Player(player_name, rooms['outside'])
 controller = Controller(player)
-
-
-#
-# Main
-#
-command = "start"
-while (command is not 'q'):
-    clear()
-    player.look()
-    command = controller.tick()
+controller.start()

@@ -1,3 +1,6 @@
+from utils import clear
+
+
 class Controller:
     _player = None
 
@@ -71,6 +74,7 @@ class Controller:
                 return command
 
         if action == 'i' or action == 'inventory':
+            clear()
             self._player.inventory()
             return command
 
@@ -78,3 +82,10 @@ class Controller:
             return command
 
         input("INVALID COMMAND! Press ENTER key then enter a valid command...")
+
+    def start(self):
+        command = "start"
+        while (command is not 'q'):
+            clear()
+            self._player.look()
+            command = self.tick()
