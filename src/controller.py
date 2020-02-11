@@ -13,16 +13,16 @@ class Controller:
 
     def tick(self):
         prompt = self.prompt_question
-        if self.player.current_room.north is not None:
+        if self.player.look_north() is not None:
             prompt += self.prompt_north
 
-        if self.player.current_room.south is not None:
+        if self.player.look_south() is not None:
             prompt += self.prompt_south
 
-        if self.player.current_room.east is not None:
+        if self.player.look_east() is not None:
             prompt += self.prompt_east
 
-        if self.player.current_room.west is not None:
+        if self.player.look_west() is not None:
             prompt += self.prompt_west
 
         prompt += self.prompt_quit
@@ -31,22 +31,22 @@ class Controller:
         move_to = None
 
         if command is 'n':
-            move_to = self.player.current_room.north
+            move_to = self.player.look_north()
 
         if command is 's':
-            move_to = self.player.current_room.south
+            move_to = self.player.look_south()
 
         if command is 'e':
-            move_to = self.player.current_room.east
+            move_to = self.player.look_east()
 
         if command is 'w':
-            move_to = self.player.current_room.west
+            move_to = self.player.look_west()
 
         if command is 'q':
             return command
 
         if move_to is not None:
-            self.player.current_room = move_to
+            self.player.move(move_to)
             return command
 
         input("INVALID COMMAND! Press any key then enter a valid command...")
