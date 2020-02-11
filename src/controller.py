@@ -12,22 +12,22 @@ class Controller:
         prompt += '\n  q - Quit'
         prompt += '\n  i - Inventory'
 
-        if self._player.look_north() is not None:
+        if self._player.look_north():
             prompt += '\n  n - Move North'
 
-        if self._player.look_south() is not None:
+        if self._player.look_south():
             prompt += '\n  s - Move South'
 
-        if self._player.look_east() is not None:
+        if self._player.look_east():
             prompt += '\n  e - Move East'
 
-        if self._player.look_west() is not None:
+        if self._player.look_west():
             prompt += '\n  w - Move West'
 
-        if self._player.item_search() is not None:
+        if self._player.item_search():
             prompt += '\n  take <item> - Take a item from this room'
 
-        if self._player.bag_search() is not None:
+        if self._player.bag_search():
             prompt += '\n  drop <item> - Drop a item in this room'
 
         prompt += '\n\nCommand: '
