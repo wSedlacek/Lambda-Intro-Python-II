@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import List
+from typing import List, Optional
+
 from item import Item
 
 
@@ -7,17 +8,21 @@ class Room:
     _name: str
     _description: str
 
-    _north: Room = None
-    _south: Room = None
-    _east: Room = None
-    _west: Room = None
+    _north: Optional["Room"]
+    _south: Optional["Room"]
+    _east: Optional["Room"]
+    _west: Optional["Room"]
 
-    _items: List[Item] = []
+    _items: List[Item]
 
     def __init__(self, name: str, description: str, items: List[Item]):
         self._name = name
         self._description = description
         self._items = items
+        self._north = None
+        self._south = None
+        self._east = None
+        self._west = None
 
     def __str__(self):
         details = f'''==={self._name}===

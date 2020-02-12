@@ -1,8 +1,7 @@
-from room import Room
+from controller import Controller
 from item import Item
 from player import Player
-from controller import Controller
-
+from room import Room
 
 items = {
     'sword': Item("Sword", "A sharp toy to cut things.")

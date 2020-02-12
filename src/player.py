@@ -1,16 +1,18 @@
-from typing import List
-from room import Room
+from typing import List, Optional
+
 from item import Item
+from room import Room
 
 
 class Player:
     _name: str
     _current_room: Room
-    _items: List[Item] = []
+    _items: List[Item]
 
     def __init__(self, name: str, room: Room):
         self._name = name
         self._current_room = room
+        self._items = []
 
     def __str__(self):
         details = f'''==={self._name}==='''
@@ -22,7 +24,7 @@ class Player:
     def look(self):
         print(self._current_room)
 
-    def move(self, room: Room):
+    def move(self, room: Optional[Room]):
         if room is None:
             raise TypeError
         self._current_room = room
