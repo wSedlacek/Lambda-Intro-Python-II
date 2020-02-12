@@ -32,9 +32,9 @@ export class Player extends Entity {
   }
 
   public take(itemName: string) {
-    const item = this.currentRoom.items.find((item) => item.hasName(itemName));
-    if (item === undefined) throw new Error('INVALID ITEM!');
-    this.currentRoom.take(item);
+    const index = this.currentRoom.items.findIndex((item) => item.hasName(itemName));
+    if (index === -1) throw new Error('INVALID ITEM!');
+    const [item] = this.currentRoom.take(index);
     this.items.push(item);
     item.onTake();
   }

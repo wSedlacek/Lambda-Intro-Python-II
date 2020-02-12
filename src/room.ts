@@ -50,9 +50,8 @@ ${this.description}\n`;
     return this._items;
   }
 
-  public take(item: Item) {
-    const index = this._items.findIndex((searching) => searching === item);
-    this._items.splice(index, 1);
+  public take(index: number) {
+    return this._items.splice(index, 1);
   }
 
   public drop(item: Item) {
