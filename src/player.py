@@ -8,7 +8,7 @@ class Player:
     _current_room: Room
     _items: List[Item] = []
 
-    def __init__(self, name, room):
+    def __init__(self, name: str, room: Room):
         self._name = name
         self._current_room = room
 
@@ -22,7 +22,7 @@ class Player:
     def look(self):
         print(self._current_room)
 
-    def move(self, room):
+    def move(self, room: Room):
         if room is None:
             raise TypeError
         self._current_room = room
@@ -31,14 +31,14 @@ class Player:
         print(self)
         input('Press ENTER key to continue...')
 
-    def take(self, item_name):
+    def take(self, item_name: str):
         items = self._current_room.items()
         item = next((item for item in items if item.has_name(item_name)))
         self._current_room.take(item)
         self._items.append(item)
         item.on_take()
 
-    def drop(self, item_name):
+    def drop(self, item_name: str):
         items = self._items
         item = next((item for item in items if item.has_name(item_name)))
         self._items.remove(item)

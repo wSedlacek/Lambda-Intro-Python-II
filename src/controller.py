@@ -5,7 +5,7 @@ from utils import clear
 class Controller:
     _player: Player
 
-    def __init__(self, player):
+    def __init__(self, player: Player):
         self._player = player
 
     def _build_prompt(self):
