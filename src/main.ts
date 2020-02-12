@@ -5,7 +5,8 @@ import { Room } from './room';
 import { prompt } from './utils';
 
 const items = {
-  sword: new Item('Sword', 'A sharp toy to cut things.')
+  sword: new Item('Sword', 'A sharp toy to cut things.'),
+  coins: new Item('Coins', 'A sum of coins...')
 };
 
 const rooms = {
@@ -30,7 +31,8 @@ to north. The smell of gold permeates the air.`
     'Treasure Chamber',
     `You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.`
+earlier adventurers. The only exit is to the south.`,
+    [items.coins]
   )
 };
 
