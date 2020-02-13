@@ -39,24 +39,9 @@ class Controller:
         action, *subjects = command.split(' ', 1)
 
         try:
-            if action == 'n':
-                room = self._player.look_north()
-                self._player.move(room)
-                return command
 
-            if action == 's':
-                room = self._player.look_south()
-                self._player.move(room)
-                return command
-
-            if action == 'e':
-                room = self._player.look_east()
-                self._player.move(room)
-                return command
-
-            if action == 'w':
-                room = self._player.look_west()
-                self._player.move(room)
+            if action == 'n' or action == 's' or action == 'e' or action == 'w':
+                self._player.move(action)
                 return command
 
             if action == 'take' or action == 'get':

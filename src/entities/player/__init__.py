@@ -24,10 +24,25 @@ class Player(Entity):
     def look(self):
         print(self._current_room)
 
-    def move(self, room: Optional[Room]):
-        if room is None:
+    def move(self, direction: str):
+        if direction is 'n':
+            direction = 'north'
+
+        if direction is 's':
+            direction = 'south'
+
+        if direction is 'e':
+            direction = 'east'
+
+        if direction is 'w':
+            direction = 'west'
+
+        room = getattr(self._current_room, direction)
+
+        if room() is None:
             raise TypeError
-        self._current_room = room
+
+        self._current_room = room()
 
     def inventory(self):
         print(self)
