@@ -34,10 +34,10 @@ earlier adventurers. The only exit is to the south.`,
   )
 };
 
-rooms.outside.south = rooms.foyer;
-rooms.foyer.south = rooms.overlook;
-rooms.foyer.west = rooms.narrow;
-rooms.narrow.south = rooms.treasure;
+rooms.outside.north = rooms.foyer;
+rooms.foyer.north = rooms.overlook;
+rooms.foyer.east = rooms.narrow;
+rooms.narrow.north = rooms.treasure;
 
 const main = async () => {
   const response = await prompt('What is your name adventurer?');

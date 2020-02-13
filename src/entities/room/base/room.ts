@@ -26,23 +26,23 @@ ${this.description}\n`;
   }
 
   public set north(room: Room) {
-    room._north = this;
-    this._south = room;
-  }
-
-  public set south(room: Room) {
     room._south = this;
     this._north = room;
   }
 
+  public set south(room: Room) {
+    room._north = this;
+    this._south = room;
+  }
+
   public set east(room: Room) {
-    room._east = this;
-    this._west = room;
+    room._west = this;
+    this._east = room;
   }
 
   public set west(room: Room) {
-    room._west = this;
-    this._east = room;
+    room._east = this;
+    this._west = room;
   }
 
   public get north() {
