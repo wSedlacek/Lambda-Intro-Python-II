@@ -17,7 +17,7 @@ export class Room extends Entity {
     let details = `===${this.name}===
 ${this.description}\n`;
 
-    for (const item of this.items) {
+    for (const item of this._items) {
       details += item.toString();
     }
 
@@ -62,7 +62,7 @@ ${this.description}\n`;
   }
 
   public get items() {
-    return this._items;
+    return this._items.length > 0 ? this._items : null;
   }
 
   public take(index: number) {

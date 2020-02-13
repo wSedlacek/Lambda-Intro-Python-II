@@ -1,4 +1,4 @@
-import { Player, Room } from './entities';
+import { Player } from './entities';
 import { confirm, prompt, invalid } from './utils';
 
 export class Controller {
@@ -9,12 +9,12 @@ export class Controller {
     prompt += '\n  q - Quit';
     prompt += '\n  i - Inventory';
 
-    if (this.player.lookNorth()) prompt += '\n  n - Move North';
-    if (this.player.lookSouth()) prompt += '\n  s - Move South';
-    if (this.player.lookEast()) prompt += '\n  e - Move East';
-    if (this.player.lookWest()) prompt += '\n  w - Move West';
-    if (this.player.itemSearch()) prompt += '\n  take <item> - Take a item from this room';
-    if (this.player.bagSearch()) prompt += '\n  drop <item> - Drop a item in this room';
+    if (this.player.north) prompt += '\n  n - Move North';
+    if (this.player.south) prompt += '\n  s - Move South';
+    if (this.player.east) prompt += '\n  e - Move East';
+    if (this.player.west) prompt += '\n  w - Move West';
+    if (this.player.room.items) prompt += '\n  take <item> - Take a item from this room';
+    if (this.player.items) prompt += '\n  drop <item> - Drop a item in this room';
     prompt += '\n\nCommand: ';
 
     return prompt;
@@ -40,10 +40,12 @@ export class Controller {
         case 'get':
         case 'take':
           this.player.take(subjects[0]);
+          await confirm();
           return response.text;
 
         case 'drop':
           this.player.drop(subjects[0]);
+          await confirm();
           return response.text;
 
         case 'i':
@@ -68,7 +70,7 @@ export class Controller {
     let command;
     do {
       console.clear();
-      console.log(this.player.look().toString());
+      console.log(this.player.room.toString());
       command = await this.tick();
     } while (command !== 'q');
   }

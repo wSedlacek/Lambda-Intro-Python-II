@@ -1,28 +1,24 @@
 import { Entity, Item, Room } from '../..';
 
 export class Player extends Entity {
-  private currentRoom: Room;
-  private readonly items: Item[];
+  private _room: Room;
+  private readonly _items: Item[];
 
   constructor(name: string, room: Room) {
     super(name, 'PC');
-    this.currentRoom = room;
-    this.items = [];
+    this._room = room;
+    this._items = [];
   }
 
   public toString() {
     let details = `===${this.name}===\n`;
 
-    for (const item of this.items) {
+    for (const item of this._items) {
       details += item.toString();
     }
 
     details += '\n';
     return details;
-  }
-
-  public look() {
-    return this.currentRoom;
   }
 
   public move(direction: 'n' | 'north' | 's' | 'south' | 'e' | 'east' | 'w' | 'west') {
@@ -31,50 +27,48 @@ export class Player extends Entity {
     if (direction === 'e') direction = 'east';
     if (direction === 'w') direction = 'west';
 
-    let room = this.currentRoom[direction];
+    let room = this.room[direction];
     if (!room) throw new Error('INVALID ROOM!');
-    this.currentRoom = room;
+    this._room = room;
   }
 
   public take(itemName: string) {
-    const index = this.currentRoom.items.findIndex((item) => item.hasName(itemName));
+    const index = this._room.items.findIndex((item) => item.hasName(itemName));
     if (index === -1) throw new Error('INVALID ITEM!');
-    const [item] = this.currentRoom.take(index);
-    this.items.push(item);
+    const [item] = this._room.take(index);
+    this._items.push(item);
     item.onTake();
   }
 
   public drop(itemName: string) {
-    const index = this.items.findIndex((item) => item.hasName(itemName));
+    const index = this._items.findIndex((item) => item.hasName(itemName));
     if (index === -1) throw new Error('INVALID ITEM!');
-    const [item] = this.items.splice(index, 1);
-    this.currentRoom.drop(item);
+    const [item] = this._items.splice(index, 1);
+    this._room.drop(item);
     item.onDrop();
   }
 
-  public lookNorth() {
-    return this.currentRoom.north;
+  public get room() {
+    return this._room;
   }
 
-  public lookSouth() {
-    return this.currentRoom.south;
+  public get north() {
+    return this._room.north;
   }
 
-  public lookEast() {
-    return this.currentRoom.east;
+  public get south() {
+    return this._room.south;
   }
 
-  public lookWest() {
-    return this.currentRoom.west;
+  public get east() {
+    return this._room.east;
   }
 
-  public itemSearch() {
-    const items = this.currentRoom.items;
-    return items.length > 0 ? items : null;
+  public get west() {
+    return this._room.west;
   }
 
-  public bagSearch() {
-    const items = this.items;
-    return items.length > 0 ? items : null;
+  public get items() {
+    return this._items.length > 0 ? this._items : null;
   }
 }

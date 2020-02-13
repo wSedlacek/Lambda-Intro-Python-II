@@ -1,5 +1,4 @@
 import { Entity } from '../..';
-import { confirm } from '../../../utils';
 
 export class Item extends Entity {
   public toString() {
@@ -12,11 +11,9 @@ export class Item extends Entity {
 
   public async onTake() {
     console.log(`You picked up ${this.name}`);
-    await confirm();
   }
 
   public async onDrop() {
     console.log(`You dropped up ${this.name}`);
-    await confirm();
   }
 }
