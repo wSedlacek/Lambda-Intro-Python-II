@@ -21,8 +21,8 @@ export class Controller {
   }
 
   private async tick() {
-    const response = await prompt(this.buildPrompt());
-    const [action, ...subjects] = (response.text as string).split(' ', 2);
+    const response = (await prompt(this.buildPrompt())) as { text: string };
+    const [action, ...subjects] = response.text.split(' ', 2);
 
     try {
       let room: Room;
