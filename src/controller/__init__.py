@@ -13,22 +13,22 @@ class Controller:
         prompt += '\n  q - Quit'
         prompt += '\n  i - Inventory'
 
-        if self._player.look_north():
+        if self._player.room().north():
             prompt += '\n  n - Move North'
 
-        if self._player.look_south():
+        if self._player.room().south():
             prompt += '\n  s - Move South'
 
-        if self._player.look_east():
+        if self._player.room().east():
             prompt += '\n  e - Move East'
 
-        if self._player.look_west():
+        if self._player.room().west():
             prompt += '\n  w - Move West'
 
-        if self._player.item_search():
+        if self._player.room().items():
             prompt += '\n  take <item> - Take a item from this room'
 
-        if self._player.bag_search():
+        if self._player.items():
             prompt += '\n  drop <item> - Drop a item in this room'
 
         prompt += '\n\nCommand: '

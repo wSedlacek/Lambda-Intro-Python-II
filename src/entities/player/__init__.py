@@ -62,25 +62,10 @@ class Player(Entity):
         self._current_room.drop(item)
         item.on_drop()
 
-    def look_north(self):
-        return self._current_room.north()
+    def room(self):
+        return self._current_room
 
-    def look_south(self):
-        return self._current_room.south()
-
-    def look_east(self):
-        return self._current_room.east()
-
-    def look_west(self):
-        return self._current_room.west()
-
-    def item_search(self):
-        if len(self._current_room.items()) is 0:
-            return None
-        else:
-            return self._current_room.items()
-
-    def bag_search(self):
+    def items(self):
         if len(self._items) is 0:
             return None
         else:
