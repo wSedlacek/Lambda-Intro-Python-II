@@ -1,4 +1,5 @@
 import { Entity, Item, Room } from '../..';
+import { Direction, normalizeDirection } from '../../../utils';
 
 export class Player extends Entity {
   private _room: Room;
@@ -21,12 +22,8 @@ export class Player extends Entity {
     return details;
   }
 
-  public move(direction: 'n' | 'north' | 's' | 'south' | 'e' | 'east' | 'w' | 'west') {
-    if (direction === 'n') direction = 'north';
-    if (direction === 's') direction = 'south';
-    if (direction === 'e') direction = 'east';
-    if (direction === 'w') direction = 'west';
-
+  public move(direction: Direction) {
+    direction = normalizeDirection(direction);
     let room = this.room[direction];
     if (!room) throw new Error('INVALID ROOM!');
     this._room = room;

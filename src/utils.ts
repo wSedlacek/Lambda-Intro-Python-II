@@ -11,3 +11,17 @@ export const invalid = (message = 'INVALID COMMAND!') =>
     type: 'text',
     message: `${message} Press ENTER to continue...`
   });
+
+export type Direction = 'n' | 'north' | 's' | 'south' | 'e' | 'east' | 'w' | 'west';
+export const normalizeDirection = (direction: Direction) => {
+  switch (direction) {
+    case 'n':
+      return 'north';
+    case 's':
+      return 'south';
+    case 'e':
+      return 'east';
+    case 'w':
+      return 'west';
+  }
+};
