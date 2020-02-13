@@ -1,5 +1,4 @@
-import { Entity } from './entity';
-import { Item } from './item';
+import { Entity, Item } from '../..';
 
 export class Room extends Entity {
   private _north: Room;
@@ -7,7 +6,7 @@ export class Room extends Entity {
   private _east: Room;
   private _west: Room;
 
-  private _items: Item[];
+  private readonly _items: Item[];
 
   constructor(name: string, description: string, items: Item[] = []) {
     super(name, description);
@@ -26,36 +25,24 @@ ${this.description}\n`;
     return details;
   }
 
-  public northOf(room: Room) {
+  public set north(room: Room) {
     room._north = this;
     this._south = room;
   }
 
-  public southOf(room: Room) {
+  public set south(room: Room) {
     room._south = this;
     this._north = room;
   }
 
-  public eastOf(room: Room) {
+  public set east(room: Room) {
     room._east = this;
     this._west = room;
   }
 
-  public westOf(room: Room) {
+  public set west(room: Room) {
     room._west = this;
     this._east = room;
-  }
-
-  public get items() {
-    return this._items;
-  }
-
-  public take(index: number) {
-    return this._items.splice(index, 1);
-  }
-
-  public drop(item: Item) {
-    this._items.push(item);
   }
 
   public get north() {
@@ -72,5 +59,17 @@ ${this.description}\n`;
 
   public get west() {
     return this._west;
+  }
+
+  public get items() {
+    return this._items;
+  }
+
+  public take(index: number) {
+    return this._items.splice(index, 1);
+  }
+
+  public drop(item: Item) {
+    this._items.push(item);
   }
 }

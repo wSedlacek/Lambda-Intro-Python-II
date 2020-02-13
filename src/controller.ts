@@ -1,9 +1,8 @@
-import { Room } from './room';
-import { Player } from './player';
+import { Player, Room } from './entities';
 import { confirm, prompt, invalid } from './utils';
 
 export class Controller {
-  constructor(private player: Player) {}
+  constructor(public readonly player: Player) {}
 
   private buildPrompt() {
     let prompt = 'What will you do?';
@@ -23,33 +22,20 @@ export class Controller {
 
   private async tick() {
     const response = await prompt(this.buildPrompt());
-    const [action, ...subjects] = response.text.split(' ', 2);
+    const [action, ...subjects] = (response.text as string).split(' ', 2);
 
     try {
       let room: Room;
       switch (action) {
+        case 'north':
         case 'n':
-          room = this.player.lookNorth();
-          if (!room) throw new Error('INVALID ROOM!');
-          else this.player.move(room);
-          return response.text;
-
+        case 'south':
         case 's':
-          room = this.player.lookSouth();
-          if (!room) throw new Error('INVALID ROOM!');
-          else this.player.move(room);
-          return response.text;
-
+        case 'east':
         case 'e':
-          room = this.player.lookEast();
-          if (!room) throw new Error('INVALID ROOM!');
-          else this.player.move(room);
-          return response.text;
-
+        case 'west':
         case 'w':
-          room = this.player.lookWest();
-          if (!room) throw new Error('INVALID ROOM!');
-          else this.player.move(room);
+          this.player.move(action);
           return response.text;
 
         case 'get':

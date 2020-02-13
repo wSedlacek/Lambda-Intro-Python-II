@@ -1,10 +1,8 @@
-import { Entity } from './entity';
-import { Item } from './item';
-import { Room } from './room';
+import { Entity, Item, Room } from '../..';
 
 export class Player extends Entity {
   private currentRoom: Room;
-  private items: Item[];
+  private readonly items: Item[];
 
   constructor(name: string, room: Room) {
     super(name, 'PC');
@@ -27,7 +25,14 @@ export class Player extends Entity {
     return this.currentRoom;
   }
 
-  public move(room: Room) {
+  public move(direction: 'n' | 'north' | 's' | 'south' | 'e' | 'east' | 'w' | 'west') {
+    if (direction === 'n') direction = 'north';
+    if (direction === 's') direction = 'south';
+    if (direction === 'e') direction = 'east';
+    if (direction === 'w') direction = 'west';
+
+    let room = this.currentRoom[direction];
+    if (!room) throw new Error('INVALID ROOM!');
     this.currentRoom = room;
   }
 

@@ -1,12 +1,10 @@
 import { Controller } from './controller';
-import { Item } from './item';
-import { Player } from './player';
-import { Room } from './room';
+import { Room, Player, Money, Weapon } from './entities';
 import { prompt } from './utils';
 
 const items = {
-  sword: new Item('Sword', 'A sharp toy to cut things.'),
-  coins: new Item('Coins', 'A sum of coins...')
+  coins: new Money('Coins', 'A sum of coins...', 100),
+  sword: new Weapon('Sword', 'A sharp toy to cut things.', 2)
 };
 
 const rooms = {
@@ -36,10 +34,10 @@ earlier adventurers. The only exit is to the south.`,
   )
 };
 
-rooms.outside.southOf(rooms.foyer);
-rooms.foyer.southOf(rooms.overlook);
-rooms.foyer.westOf(rooms.narrow);
-rooms.narrow.southOf(rooms.treasure);
+rooms.outside.south = rooms.foyer;
+rooms.foyer.south = rooms.overlook;
+rooms.foyer.west = rooms.narrow;
+rooms.narrow.south = rooms.treasure;
 
 const main = async () => {
   const response = await prompt('What is your name adventurer?');

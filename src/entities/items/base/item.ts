@@ -1,5 +1,5 @@
-import { Entity } from './entity';
-import { confirm } from './utils';
+import { Entity } from '../..';
+import { confirm } from '../../../utils';
 
 export class Item extends Entity {
   public toString() {
