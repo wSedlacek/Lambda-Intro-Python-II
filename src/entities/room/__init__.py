@@ -13,7 +13,7 @@ class Room(Entity):
 
     _items: List[Item]
 
-    def __init__(self, name: str, description: str, items: List[Item]):
+    def __init__(self, name: str, description: str, items: List[Item] = []):
         super().__init__(name, description)
         self._items = items
         self._north = None

@@ -15,7 +15,7 @@ class Player(Entity):
         self._items = []
 
     def __str__(self):
-        details = f'''==={self.name}==='''
+        details = f'==={self.name}==='
         for item in self._items:
             details += str(item)
         details += '\n\n'
