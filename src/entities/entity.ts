@@ -1,3 +1,5 @@
-export abstract class Entity {
-  constructor(public readonly name: string, public readonly description: string) {}
+export abstract class Entity extends Object {
+  constructor(public readonly name: string, public readonly description: string) {
+    super();
+  }
 }

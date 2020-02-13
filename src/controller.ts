@@ -5,7 +5,8 @@ export class Controller {
   constructor(public readonly player: Player) {}
 
   private buildPrompt() {
-    let prompt = 'What will you do?';
+    let prompt = '';
+    prompt += 'What will you do?';
     prompt += '\n  q - Quit';
     prompt += '\n  i - Inventory';
 
