@@ -1,13 +1,11 @@
 from __future__ import annotations
 from typing import List, Optional
 
-from item import Item
+from .. import Entity
+from ..items import Item
 
 
-class Room:
-    _name: str
-    _description: str
-
+class Room(Entity):
     _north: Optional["Room"]
     _south: Optional["Room"]
     _east: Optional["Room"]
@@ -16,8 +14,7 @@ class Room:
     _items: List[Item]
 
     def __init__(self, name: str, description: str, items: List[Item]):
-        self._name = name
-        self._description = description
+        super().__init__(name, description)
         self._items = items
         self._north = None
         self._south = None
@@ -25,8 +22,8 @@ class Room:
         self._west = None
 
     def __str__(self):
-        details = f'''==={self._name}===
-{self._description}\n'''
+        details = f'''==={self.name}===
+{self.description}\n'''
 
         for item in self._items:
             details += str(item)

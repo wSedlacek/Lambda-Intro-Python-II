@@ -1,21 +1,21 @@
 from typing import List, Optional
 
-from item import Item
-from room import Room
+from .. import Entity
+from ..items import Item
+from ..room import Room
 
 
-class Player:
-    _name: str
+class Player(Entity):
     _current_room: Room
     _items: List[Item]
 
     def __init__(self, name: str, room: Room):
-        self._name = name
+        super().__init__(name, "PC")
         self._current_room = room
         self._items = []
 
     def __str__(self):
-        details = f'''==={self._name}==='''
+        details = f'''==={self.name}==='''
         for item in self._items:
             details += str(item)
         details += '\n\n'
