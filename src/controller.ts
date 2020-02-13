@@ -25,7 +25,6 @@ export class Controller {
     const [action, ...subjects] = response.text.split(' ', 2);
 
     try {
-      let room: Room;
       switch (action) {
         case 'north':
         case 'n':
