@@ -1,6 +1,6 @@
 import { Entity } from '../..';
 
-export class Item extends Entity {
+export abstract class Item extends Entity {
   public toString() {
     return `\nItem: ${this.name} - ${this.description}`;
   }
