@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import List, Optional
 
-from .. import Entity
-from ..items import Item
+from entity import Entity
+from item import Item
 
 
 class Room(Entity):

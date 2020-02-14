@@ -1,7 +1,7 @@
 from controller import Controller
-from entities.items.weapons import Weapon
-from entities.player import Player
-from entities.room import Room
+from weapon import Weapon
+from player import Player
+from room import Room
 
 items = {
     'sword': Weapon("Sword", "A sharp toy to cut things.", 2)

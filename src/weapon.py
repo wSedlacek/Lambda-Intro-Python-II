@@ -1,4 +1,4 @@
-from .. import Item
+from item import Item
 
 
 class Weapon(Item):

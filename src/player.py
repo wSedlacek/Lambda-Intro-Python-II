@@ -1,8 +1,8 @@
 from typing import List, Optional
 
-from .. import Entity
-from ..items import Item
-from ..room import Room
+from entity import Entity
+from item import Item
+from room import Room
 
 
 class Player(Entity):

@@ -1,4 +1,4 @@
-from entities.player import Player
+from player import Player
 from utils import clear
 
 

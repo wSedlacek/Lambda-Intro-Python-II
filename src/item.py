@@ -1,4 +1,4 @@
-from .. import Entity
+from entity import Entity
 
 
 class Item(Entity):
