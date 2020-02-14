@@ -39,7 +39,7 @@ class Player(Entity):
 
         room = getattr(self._current_room, direction)
 
-        if room() is None:
+        if not room():
             raise TypeError
 
         self._current_room = room()
@@ -66,7 +66,4 @@ class Player(Entity):
         return self._current_room
 
     def items(self):
-        if len(self._items) is 0:
-            return None
-        else:
-            return self._items
+        return self._items

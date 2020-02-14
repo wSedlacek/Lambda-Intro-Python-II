@@ -47,10 +47,7 @@ class Room(Entity):
         self._east = room
 
     def items(self):
-        if len(self._items) is 0:
-            return None
-        else:
-            return self._items
+        return self._items
 
     def take(self, item: Item):
         self._items.remove(item)
